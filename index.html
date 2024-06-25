@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect Four ☺️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="twinkling"></div>
+    <div class="clouds"></div>
+    
+    <div class="game-container">
+        <h1>Connect Four by NJ</h1>
+        <div class="theme-selector">
+            <button class="theme-btn" data-theme="cyber">Cyber</button>
+            <button class="theme-btn" data-theme="neon">Neon</button>
+            <button class="theme-btn" data-theme="retro">Retro</button>
+        </div>
+        <div id="turnIndicator" class="turn-indicator"></div>
+        <div id="scoreDisplay" class="score-display"></div>
+        <div class="game-board" id="gameBoard"></div>
+        <div class="controls">
+            <button id="resetBtn">Reset Game</button>
+            <button id="aiToggle">Play vs AI</button>
+            <select id="aiDifficulty">
+                <option value="easy">Easy</option>
+                <option value="medium" selected>Medium</option>
+                <option value="hard">Hard</option>
+            </select>
+        </div>
+    </div>
+    <div class="winner-modal" id="winnerModal">
+        <div class="modal-content">
+            <h2 id="winnerText"></h2>
+            <button id="playAgainBtn">Play Again</button>
+        </div>
+    </div>
+    <div class="instructions-modal" id="instructionsModal">
+        <div class="modal-content">
+            <h2>How to Play</h2>
+            <p>Connect Four is a two-player game where the objective is to be the first to form a horizontal, vertical, or diagonal line of four of one's own discs.</p>
+            <p>Click on a column to drop your disc. The game alternates between players until a winner is determined or the game ends in a draw.</p>
+            <p>Use the "Play vs AI" button to switch between playing against another human or the computer.</p>
+            <button id="closeInstructions">Got it!</button>
+        </div>
+    </div>
+    <audio id="dropSound" src="https://assets.mixkit.co/sfx/preview/mixkit-plastic-bubble-click-1124.mp3"></audio>
+    <audio id="winSound" src="https://assets.mixkit.co/sfx/preview/mixkit-achievement-bell-600.mp3"></audio>
+    <script src="script.js"></script>
+</body>
+</html>

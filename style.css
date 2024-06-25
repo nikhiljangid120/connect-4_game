@@ -1,0 +1,269 @@
+:root {
+    --primary-bg: #0a0a23;
+    --secondary-bg: #1b1b32;
+    --board-bg: #2a2a40;
+    --cell-bg: #3a3a5a;
+    --player1-color: #ff6b6b;
+    --player2-color: #4ecdc4;
+    --text-color: #f7fff7;
+    --accent-color: #ff9ff3;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--primary-bg);
+    position: relative;
+    overflow: hidden;
+}
+
+.stars, .twinkling, .clouds {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.stars {
+    background: #000 url(http://www.script-tutorials.com/demos/360/images/stars.png) repeat top center;
+    z-index: -3;
+}
+
+.twinkling {
+    background: transparent url(http://www.script-tutorials.com/demos/360/images/twinkling.png) repeat top center;
+    z-index: -2;
+    animation: move-twink-back 200s linear infinite;
+}
+
+.clouds {
+    background: transparent url(http://www.script-tutorials.com/demos/360/images/clouds3.png) repeat top center;
+    z-index: -1;
+    opacity: .4;
+    animation: move-clouds-back 200s linear infinite;
+}
+
+@keyframes move-twink-back {
+    from {background-position: 0 0;}
+    to {background-position: -10000px 5000px;}
+}
+
+@keyframes move-clouds-back {
+    from {background-position: 0 0;}
+    to {background-position: 10000px 0;}
+}
+
+.game-container {
+    background: rgba(27, 27, 50, 0.8);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    max-width: 90%;
+    width: 500px;
+    z-index: 1;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--accent-color);
+    text-shadow: 0 0 10px var(--accent-color);
+}
+
+.theme-selector {
+    margin-bottom: 1rem;
+}
+
+.theme-btn, .controls button, #closeInstructions, #playAgainBtn {
+    background: var(--cell-bg);
+    color: var(--text-color);
+    border: none;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: inherit;
+    font-weight: bold;
+}
+
+.theme-btn:hover, .controls button:hover, #closeInstructions:hover, #playAgainBtn:hover {
+    background: var(--accent-color);
+    color: var(--primary-bg);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    background: var(--board-bg);
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.cell {
+    width: 100%;
+    padding-bottom: 100%;
+    background: var(--cell-bg);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.cell:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px var(--accent-color);
+}
+
+.cell.player1 {
+    background: var(--player1-color);
+    box-shadow: 0 0 15px var(--player1-color);
+}
+
+.cell.player2 {
+    background: var(--player2-color);
+    box-shadow: 0 0 15px var(--player2-color);
+}
+
+.turn-indicator, .score-display {
+    margin: 1rem 0;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.player1-text {
+    color: var(--player1-color);
+}
+
+.player2-text {
+    color: var(--player2-color);
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#aiDifficulty {
+    background: var(--cell-bg);
+    color: var(--text-color);
+    border: none;
+    padding: 0.5rem;
+    margin: 0.5rem;
+    border-radius: 5px;
+    font-family: inherit;
+}
+
+.winner-modal, .instructions-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: var(--secondary-bg);
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 90%;
+    width: 400px;
+}
+
+#winnerText {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--accent-color);
+}
+
+@keyframes dropPiece {
+    0% { transform: translateY(-500%); }
+    100% { transform: translateY(0); }
+}
+
+.cell.dropped {
+    animation: dropPiece 0.5s ease-in;
+}
+
+/* Themes */
+body.cyber {
+    --primary-bg: #000000;
+    --secondary-bg: #1a1a2e;
+    --board-bg: #16213e;
+    --cell-bg: #0f3460;
+    --player1-color: #e94560;
+    --player2-color: #533483;
+    --text-color: #00fff5;
+    --accent-color: #ff00ff;
+}
+
+body.neon {
+    --primary-bg: #0c0c1d;
+    --secondary-bg: #1f1f3a;
+    --board-bg: #2e2e56;
+    --cell-bg: #3d3d72;
+    --player1-color: #ff00ff;
+    --player2-color: #00ffff;
+    --text-color: #ffffff;
+    --accent-color: #ffff00;
+}
+
+body.retro {
+    --primary-bg: #2c2c54;
+    --secondary-bg: #474787;
+    --board-bg: #5f5f8f;
+    --cell-bg: #706fd3;
+    --player1-color: #f7f1e3;
+    --player2-color: #34ace0;
+    --text-color: #ffda79;
+    --accent-color: #ff5252;
+}
+
+@media (max-width: 500px) {
+    .game-container {
+        padding: 1rem;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .game-board {
+        gap: 5px;
+    }
+
+    .cell {
+        width: 40px;
+        height: 40px;
+    }
+}
